@@ -7,7 +7,11 @@ type Props = {
 
 export async function generateStaticParams() {
   const posts = getBlogPosts('en');
-  return posts.map((post) => ({ slug: post.slug }));
+  if (posts.length > 0) {
+    return posts.map((post) => ({ slug: post.slug }));
+  } else {
+    return [{ slug: "not-found" }];
+  }
 }
 
 export default function BlogPostPage({ params }: Props) {
