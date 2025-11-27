@@ -1,0 +1,14 @@
+{
+  "title": "Hi, I'm k402xxxcenxxx",
+  "subtitle": "SRE; Full-stack developer; Coffee enthusiast",
+  "description": "",
+  "primaryButton": {
+    "label": "View my work",
+    "href": "#works"
+  },
+  "secondaryButton": {
+    "label": "Contact me",
+    "href": "#contact"
+  },
+  "backgroundImage": "/images/hero-bg.jpg"
+}

@@ -1,0 +1,14 @@
+{
+  "title": "About",
+  "headline": "Hello, I'm k402xxxcenxxx",
+  "body": [
+    "I am a Site Reliability Engineer (SRE) with a passion for building scalable and reliable systems. I specialize in automating infrastructure, optimizing performance, and ensuring high availability for mission-critical applications.",
+    "With over 5 years of experience in the tech industry, I have worked on various projects ranging from web applications to large-scale distributed systems. My expertise lies in leveraging cloud technologies, containerization, and CI/CD pipelines to streamline operations and enhance system resilience.",
+    "When I'm not working on improving system reliability, I enjoy exploring new technologies, contributing to open-source projects, and sharing knowledge with the tech community."
+  ],
+  "highlightItems": [
+    { "label": "Experience", "value": "5+ years" },
+    { "label": "Location", "value": "Taipei, Taiwan" },
+    { "label": "Focus", "value": "Site Reliability Engineering" }
+  ]
+}

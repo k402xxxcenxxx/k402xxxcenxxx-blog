@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 
 const blogDir = path.join(process.cwd(), 'content', 'blog');
 const worksDir = path.join(process.cwd(), 'content', 'works');
+const contentDir = path.join(process.cwd(), 'content');
 
 export type Lang = 'en' | 'zh';
 
@@ -71,4 +72,68 @@ export function getWorks(lang: Lang) {
 
 export function getWorkBySlug(slug: string, lang: Lang) {
   return getContentBySlug(worksDir, slug, lang);
+}
+
+function readJson<T>(segments: string[]): T {
+  const filePath = path.join(contentDir, ...segments) + ".json";
+  const fileContent = fs.readFileSync(filePath, "utf8");
+  return JSON.parse(fileContent) as T;
+}
+
+export type HeroContent = {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  primaryButton?: { label: string; href: string };
+  secondaryButton?: { label: string; href: string };
+  backgroundImage?: string;
+};
+
+export type AboutContent = {
+  title: string;
+  headline?: string;
+  body?: string[];
+  highlightItems?: { label: string; value: string }[];
+};
+
+export type ServicesContent = {
+  title: string;
+  subtitle?: string;
+  items: { title: string; description: string }[];
+};
+
+export type WorksContent = {
+  title: string;
+  subtitle?: string;
+  projects: {
+    name: string;
+    role?: string;
+    description?: string;
+    href?: string;
+    tags?: string[];
+  }[];
+};
+
+export type ContactContent = {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  email?: string;
+  socials?: { label: string; href: string }[];
+};
+
+export function getHeroContent(): HeroContent {
+  return readJson<HeroContent>(["home", "hero"]);
+}
+
+export function getAboutContent(): AboutContent {
+  return readJson<AboutContent>(["home", "about"]);
+}
+
+export function getWorksContent(): WorksContent {
+  return readJson<WorksContent>(["home", "works"]);
+}
+
+export function getContactContent(): ContactContent {
+  return readJson<ContactContent>(["home", "contact"]);
 }

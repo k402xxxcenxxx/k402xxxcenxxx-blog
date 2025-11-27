@@ -1,0 +1,27 @@
+{
+  "title": "Selected Works",
+  "subtitle": "A few projects I’m proud of",
+  "projects": [
+    {
+      "name": "Gitlab Gantt chart",
+      "role": "Developer",
+      "description": "A Chrome extension that adds Gantt chart functionality to GitLab issues and milestones.",
+      "href": "https://chrome.google.com/webstore/detail/gitlab-gantt-chart/ggdacknafiabbfgekebgnhikdaonhmid?hl=zh-TW&authuser=0",
+      "tags": ["JavaScript", "Chrome Extension"]
+    },
+    {
+      "name": "python-miio",
+      "role": "Contributor",
+      "description": "A Python library for controlling Xiaomi smart home devices. I contributed to adding support for Mi Robot Vacuum-Mop 2 Pro.",
+      "href": "https://github.com/rytilahti/python-miio",
+      "tags": ["Python", "IoT"]
+    },
+    {
+      "name": "Compare PAL",
+      "role": "Developer",
+      "description": "A web application that allows users to compare pairs of images using friendly UI.",
+      "href": "https://k402xxxcenxxx.github.io/compare-pal/static/",
+      "tags": ["Vibe Coding", "Web App"]
+    }
+  ]
+}

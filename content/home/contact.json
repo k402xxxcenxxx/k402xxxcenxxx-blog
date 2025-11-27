@@ -1,0 +1,10 @@
+{
+  "title": "Contact",
+  "subtitle": "Get in touch",
+  "description": "Feel free to reach out to me for any inquiries, collaborations, or just to say hello. I'm always open to connecting with fellow professionals and enthusiasts in the tech community.",
+  "email": "k402xxxcenxxx@gmail.com",
+  "socials": [
+    { "label": "GitHub", "href": "https://github.com/k402xxxcenxxx" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/kemin-hu-95b2a0aa" }
+  ]
+}
