@@ -1,4 +1,5 @@
 import { getWorkBySlug, getWorks } from '@/lib/content';
+import { markdownToHtml } from '@/lib/markdown';
 import { notFound } from 'next/navigation';
 
 type Props = {
@@ -16,32 +17,38 @@ export async function generateStaticParams() {
 
 export default async function WorkPage({ params }: Props) {
   const { slug } = await params;
-  const post = getWorkBySlug(slug, 'en');
+  const work = getWorkBySlug(slug, 'en');
 
-  if (!post) {
+  if (!work) {
     return notFound();
   }
 
+  const htmlContent = await markdownToHtml(work.content);
+
   return (
     <main className="max-w-3xl mx-auto px-4 py-8">
-      {post.coverImage && (
+      {work.coverImage && (
         <img
-          src={post.coverImage}
-          alt={post.title}
+          src={work.coverImage}
+          alt={work.title}
           className="w-full mb-6 rounded"
         />
       )}
-      <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-      <p className="text-sm text-gray-500 mb-6">{post.date}</p>
-      <article className="prose max-w-none">
-        {/* 這裡可以先用危險插入（只接受純 Markdown->HTML 時），
-            或後續加正式 MDX 渲染。
-            先用簡單做法：直接顯示文字 (無格式)，之後可改成 MDX。
-        */}
-        <pre className="whitespace-pre-wrap font-sans">
-          {post.content}
-        </pre>
-      </article>
+      <h1 className="text-3xl font-bold mb-2">{work.title}</h1>
+      <p className="text-sm text-gray-500 mb-2">{work.date}</p>
+      {work.role && (
+        <p className="text-sm text-gray-500 mb-4">Role: {work.role}</p>
+      )}
+      {work.tech && work.tech.length > 0 && (
+        <p className="text-sm text-gray-500 mb-6">
+          Tech: {work.tech.join(', ')}
+        </p>
+      )}
+
+      <article
+        className="prose max-w-none"
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      />
     </main>
   );
 }

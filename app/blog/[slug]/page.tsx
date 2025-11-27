@@ -1,4 +1,5 @@
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/content';
+import { markdownToHtml } from '@/lib/markdown';
 import { notFound } from 'next/navigation';
 
 type Props = {
@@ -22,6 +23,8 @@ export default async function BlogPostPage({ params }: Props) {
     return notFound();
   }
 
+  const htmlContent = await markdownToHtml(post.content);
+
   return (
     <main className="max-w-3xl mx-auto px-4 py-8">
       {post.coverImage && (
@@ -33,15 +36,11 @@ export default async function BlogPostPage({ params }: Props) {
       )}
       <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
       <p className="text-sm text-gray-500 mb-6">{post.date}</p>
-      <article className="prose max-w-none">
-        {/* 這裡可以先用危險插入（只接受純 Markdown->HTML 時），
-            或後續加正式 MDX 渲染。
-            先用簡單做法：直接顯示文字 (無格式)，之後可改成 MDX。
-        */}
-        <pre className="whitespace-pre-wrap font-sans">
-          {post.content}
-        </pre>
-      </article>
+
+      <article
+        className="prose max-w-none"
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      />
     </main>
   );
 }
