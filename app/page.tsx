@@ -1,135 +1,85 @@
 import Link from 'next/link';
-import { getWorks, getBlogPosts } from '@/lib/content';
 
 export const metadata = {
   title: 'Home | Portfolio & Blog',
 };
 
 export default function HomePage() {
-  const works = getWorks('en') || [];
-  const posts = getBlogPosts('en') || [];
-
-  const featuredWorks = works.slice(0, 3);
-  const latestPosts = posts.slice(0, 3);
-
   return (
-    <main className="max-w-5xl mx-auto px-4 py-10 space-y-12">
-      {/* Hero 區塊 */}
-      <section className="flex flex-col md:flex-row items-start md:items-center gap-8">
-        <div className="flex-1 space-y-4">
-          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
-            Portfolio & Blog
-          </p>
-          <h1 className="text-4xl md:text-5xl font-extrabold">
-            Hi, I&apos;m <span className="text-blue-600">Your Name</span>
-          </h1>
-          <p className="text-gray-600 max-w-xl">
-            A short introduction about who you are and what you do.
-            You can talk about your role, interests, and what kind of work
-            or articles people can expect to find here.
-          </p>
-          <div className="flex flex-wrap gap-3 pt-2">
-            <Link
-              href="/works"
-              className="inline-flex items-center px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700"
-            >
-              View Works
-            </Link>
-            <Link
-              href="/blog"
-              className="inline-flex items-center px-4 py-2 rounded-md border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              Read Blog
-            </Link>
-          </div>
-        </div>
-        {/* TODO: avatar, cover image */}
-        {/* <div className="w-40 h-40 rounded-full bg-gray-200" /> */}
-      </section>
+    <div className="relative min-h-screen text-white">
+      <div
+        className="
+          absolute inset-0 
+          bg-cover bg-center bg-no-repeat
+          bg-[url('/k402xxxcenxxx-blog/uploads/hero-background.jpg')]
+        "
+      />
 
-      {/* Featured Works */}
-      <section className="space-y-4">
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-2xl font-bold">Featured Works</h2>
-          <Link
-            href="/works"
-            className="text-sm text-blue-600 hover:underline"
-          >
-            View all
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+
+      {/* Content layer */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Nav Bar */}
+        <header className="flex items-center justify-between px-6 md:px-12 py-5">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 border-2 border-white flex items-center justify-center font-bold text-lg">
+              T
+            </div>
           </Link>
-        </div>
 
-        {featuredWorks.length === 0 ? (
-          <p className="text-gray-500 text-sm">
-            No works yet. Add some items in <code>content/works</code>.
-          </p>
-        ) : (
-          <div className="grid gap-6 md:grid-cols-3">
-            {featuredWorks.map((work) => (
+          <nav className="flex items-center gap-6 text-sm font-medium">
+            <Link href="/" className="hover:text-gray-200">
+              Home
+            </Link>
+            <Link href="/about" className="hover:text-gray-200">
+              About me
+            </Link>
+            <Link href="/works" className="hover:text-gray-200">
+              Portfolio
+            </Link>
+            <Link href="/blog" className="hover:text-gray-200">
+              Blog
+            </Link>
+          </nav>
+        </header>
+
+        {/* Hero section */}
+        <main className="flex-1 flex items-center">
+          <section className="px-6 md:px-12 lg:px-24 max-w-4xl">
+            <p className="text-sm md:text-base font-semibold tracking-[0.2em] uppercase text-gray-200 mb-3">
+              SRE
+            </p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
+              I&apos;m k402xxxcenxxx
+            </h1>
+            <p className="text-base md:text-lg text-gray-200 max-w-xl mb-8">
+              A Site Reliability Engineer (SRE) passionate about building
+              scalable and reliable systems. I love automating tasks, improving
+              system performance, and ensuring seamless user experiences.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
               <Link
-                key={`${work.slug}-${work.lang}`}
-                href={`/works/${work.slug}`}
-                className="group block border border-gray-200 rounded-lg overflow-hidden bg-white hover:shadow-md transition-shadow"
+                href="/works"
+                className="inline-flex items-center px-5 py-2.5 rounded-full bg-white text-gray-900 text-sm font-semibold hover:bg-gray-100 transition-colors"
               >
-                {work.coverImage && (
-                  <div className="overflow-hidden">
-                    <img
-                      src={work.coverImage}
-                      alt={work.title}
-                      className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
-                <div className="p-3">
-                  <h3 className="text-sm font-semibold group-hover:underline">
-                    {work.title}
-                  </h3>
-                  {work.role && (
-                    <p className="text-xs text-gray-500 mt-1">{work.role}</p>
-                  )}
-                </div>
+                View Portfolio
               </Link>
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* Latest Blog Posts */}
-      <section className="space-y-4">
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-2xl font-bold">Latest Posts</h2>
-          <Link
-            href="/blog"
-            className="text-sm text-blue-600 hover:underline"
-          >
-            Read all
-          </Link>
-        </div>
-
-        {latestPosts.length === 0 ? (
-          <p className="text-gray-500 text-sm">
-            No posts yet. Add some items in <code>content/blog</code>.
-          </p>
-        ) : (
-          <div className="space-y-4">
-            {latestPosts.map((post) => (
               <Link
-                key={`${post.slug}-${post.lang}`}
-                href={`/blog/${post.slug}`}
-                className="block border-b border-gray-200 pb-3 hover:bg-gray-50 rounded-md px-2 -mx-2"
+                href="/blog"
+                className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/80 text-sm font-semibold hover:bg-white/10 transition-colors"
               >
-                <h3 className="text-lg font-semibold">{post.title}</h3>
-                <p className="text-xs text-gray-500 mb-1">{post.date}</p>
-                {post.summary && (
-                  <p className="text-sm text-gray-600 line-clamp-2">
-                    {post.summary}
-                  </p>
-                )}
+                Read Blog
               </Link>
-            ))}
-          </div>
-        )}
-      </section>
-    </main>
+            </div>
+          </section>
+        </main>
+
+        <footer className="px-6 md:px-12 py-4 text-xs text-gray-300">
+          © {new Date().getFullYear()} k402xxxcenxxx. All rights reserved.
+        </footer>
+      </div>
+    </div>
   );
 }
