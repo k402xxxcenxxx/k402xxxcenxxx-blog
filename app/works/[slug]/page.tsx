@@ -2,7 +2,7 @@ import { getWorkBySlug, getWorks } from '@/lib/content';
 import { notFound } from 'next/navigation';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -14,8 +14,9 @@ export async function generateStaticParams() {
   }
 }
 
-export default function WorkPage({ params }: Props) {
-  const post = getWorkBySlug(params.slug, 'en');
+export default async function WorkPage({ params }: Props) {
+  const { slug } = await params;
+  const post = getWorkBySlug(slug, 'en');
 
   if (!post) {
     return notFound();

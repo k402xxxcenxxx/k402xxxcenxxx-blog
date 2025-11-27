@@ -2,7 +2,7 @@ import { getBlogPostBySlug, getBlogPosts } from '@/lib/content';
 import { notFound } from 'next/navigation';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -14,8 +14,9 @@ export async function generateStaticParams() {
   }
 }
 
-export default function BlogPostPage({ params }: Props) {
-  const post = getBlogPostBySlug(params.slug, 'en');
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug, 'en');
 
   if (!post) {
     return notFound();
