@@ -41,20 +41,6 @@ export function Hero({ content }: HeroProps) {
           <div className="text-lg font-semibold tracking-widest uppercase">
             k402xxxcenxxx
           </div>
-          <nav className="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#about" className="hover:text-gray-200">
-              About
-            </a>
-            <a href="/works" className="hover:text-gray-200">
-              Works
-            </a>
-            <a href="/blog" className="hover:text-gray-200">
-              Blog
-            </a>
-            <a href="#contact" className="hover:text-gray-200">
-              Contact
-            </a>
-          </nav>
         </header>
 
         {/* hero 內容 */}

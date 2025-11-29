@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getBlogPosts } from '@/lib/content';
+import { Navbar } from '@/components/layout/Navbar';
 
 export const metadata = {
   title: 'Blog | k402xxxcenxxx',
@@ -10,7 +11,8 @@ export default function BlogPage() {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Blog</h1>
+      <Navbar />
+      <h1 className="text-3xl font-bold pt-20 mb-6">Blog</h1>
       <ul className="space-y-4">
         {posts.map((post) => (
           <li key={`${post.slug}-${post.lang}`} className="border-b pb-4">

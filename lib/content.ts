@@ -137,3 +137,16 @@ export function getWorksContent(): WorksContent {
 export function getContactContent(): ContactContent {
   return readJson<ContactContent>(["home", "contact"]);
 }
+
+export function getSectionNavItems(page: string = ''): { href: string; label: string }[] {
+  const files = fs.readdirSync(path.join(contentDir, page)).filter((f) => f.endsWith(".json"));
+  console.log(files);
+  const navItems: { href: string; label: string }[] = files
+    .map((file) => {
+      return {
+        href: `/#${path.basename(file, '.json')}`,
+        label: path.basename(file, '.json').charAt(0).toUpperCase() + path.basename(file, '.json').slice(1),
+      };
+    });
+  return navItems;
+}

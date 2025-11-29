@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getWorks } from '@/lib/content';
+import { Navbar } from '@/components/layout/Navbar';
 
 export const metadata = {
   title: 'Works | Portfolio',
@@ -10,8 +11,8 @@ export default function WorksPage() {
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Works</h1>
-
+      <Navbar />
+      <h1 className="text-3xl font-bold pt-20 mb-6">Works</h1>
       {works.length === 0 ? (
         <p className="text-gray-500">No works yet. Coming soon.</p>
       ) : (
