@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production';
 
-const repoBasePath = '/k402xxxcenxxx-blog';
+const repoBasePath = process.env.NEXT_PUBLIC_ASSET_PREFIX || '';
 
 const nextConfig = {
   output: 'export',

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { HeroContent } from "@/lib/content";
+import { withAssetPrefix } from "@/lib/assetPrefix";
 
 type HeroProps = {
   content: HeroContent;
@@ -24,7 +25,7 @@ export function Hero({ content }: HeroProps) {
     >
       {backgroundImage && (
         <Image
-          src={backgroundImage}
+          src={withAssetPrefix(backgroundImage)}
           alt=""
           fill
           priority
